@@ -1,5 +1,4 @@
 "use client"
-import { motion } from "framer-motion";
 import BookmarkButton from "./BookmarkButton";
 
 export default function NumericalCard({item,onOpen}:{item:any,onOpen:(i:any)=>void}){
@@ -18,7 +17,7 @@ export default function NumericalCard({item,onOpen}:{item:any,onOpen:(i:any)=>vo
   }
 
   return (
-    <motion.article whileHover={{scale:1.02}} initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} transition={{duration:0.35}} className="glass rounded-xl p-4 sm:p-5 h-full">
+    <article className="glass rounded-xl p-4 sm:p-5 h-full transition-transform duration-200 hover:-translate-y-1 hover:shadow-xl">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
         <div className="min-w-0">
           <h3 className="text-base sm:text-lg font-semibold leading-snug">{item.topic}</h3>
@@ -33,6 +32,6 @@ export default function NumericalCard({item,onOpen}:{item:any,onOpen:(i:any)=>vo
         <button onClick={()=>onOpen(item)} className="w-full sm:w-auto px-4 py-2 bg-gradient-to-r from-indigo-600 to-cyan-400 rounded-full text-sm text-white">Study Now</button>
         <div className="text-xs text-gray-400 sm:text-right">{item.category}</div>
       </div>
-    </motion.article>
+    </article>
   )
 }

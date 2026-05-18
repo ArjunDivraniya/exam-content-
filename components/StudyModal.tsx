@@ -1,5 +1,4 @@
 "use client"
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export default function StudyModal({item,onClose}:{item:any|null,onClose:()=>void}){
@@ -33,12 +32,7 @@ export default function StudyModal({item,onClose}:{item:any|null,onClose:()=>voi
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center p-4 sm:p-6">
       <div onClick={onClose} className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 20, opacity: 0 }}
-        className="relative z-50 w-full max-w-3xl max-h-[92dvh] overflow-y-auto overscroll-contain glass rounded-2xl p-4 sm:p-6 shadow-2xl"
-      >
+      <div className="relative z-50 w-full max-w-3xl max-h-[92dvh] overflow-y-auto overscroll-contain glass rounded-2xl p-4 sm:p-6 shadow-2xl animate-[fadeUp_0.25s_ease-out_both]">
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4">
           <div>
             <h2 className="text-xl sm:text-2xl font-semibold leading-tight">{item.topic}</h2>
@@ -64,10 +58,10 @@ export default function StudyModal({item,onClose}:{item:any|null,onClose:()=>voi
                 ? Object.values(item.solution_steps)
                 : []
               return steps.map((s:any,i:number)=> (
-                <motion.div key={i} initial={{opacity:0, x:-8}} animate={{opacity:1,x:0}} className="p-3 rounded-md bg-white/3">
+                <div key={i} className="p-3 rounded-md bg-white/3 animate-[fadeUp_0.35s_ease-out_both]">
                   <div className="font-semibold">Step {i+1}</div>
                   <div className="text-sm text-gray-200 mt-1 whitespace-pre-wrap break-words">{s}</div>
-                </motion.div>
+                </div>
               ))
             })()}
           </div>
@@ -85,7 +79,7 @@ export default function StudyModal({item,onClose}:{item:any|null,onClose:()=>voi
             </ul>
           </div>
         </section>
-      </motion.div>
+      </div>
     </div>
   )
 }
