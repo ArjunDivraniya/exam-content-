@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export default function BookmarkButton({id}:{id:string}){
   const [bookmarked,setBookmarked] = useState(false)
   useEffect(()=>{
-    const b = JSON.parse(localStorage.getItem('bookmarks'||'[]')||'[]')
+    const b = JSON.parse(localStorage.getItem('bookmarks') || '[]')
     setBookmarked(b.includes(id))
   },[id])
   function toggle(){
