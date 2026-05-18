@@ -1,0 +1,223 @@
+{
+  "os_numericals": [
+    {
+      "id": "num_1",
+      "topic": "CPU Scheduling: First Come First Serve (FCFS)",
+      "category": "CPU Scheduling",
+      "difficulty": "Easy",
+      "concept_explanation": {
+        "title": "FCFS Scheduling",
+        "detailed_explanation": "FCFS (First Come First Serve) is the simplest CPU Scheduling algorithm used by the Operating System. It is a Non-Preemptive scheduling algorithm, meaning once a process gets the CPU, it executes completely before another process gets CPU access.\n\nThe Ready Queue works exactly like a real-life queue system. The process that arrives first gets executed first.\n\nImportant Terms:\n1. Arrival Time (AT): Time when process enters Ready Queue.\n2. Burst Time (BT): CPU execution time required.\n3. Completion Time (CT): Time when process finishes.\n4. Turnaround Time (TAT): Total time spent in system.\nFormula: TAT = CT - AT\n5. Waiting Time (WT): Time process waits in queue.\nFormula: WT = TAT - BT\n\nAdvantages:\n- Simple implementation\n- No starvation\n\nDisadvantages:\n- Convoy Effect\n- Poor waiting time for short processes\n\nReal-Life Example:\nA billing counter where customers are served in order of arrival."
+      },
+      "problem_statement": "P1: AT=0 BT=8\nP2: AT=1 BT=4\nP3: AT=2 BT=9\nP4: AT=3 BT=5\nFind Average Waiting Time and Average Turnaround Time.",
+      "solution_steps": {
+        "step_1": "Gantt Chart:\n0 | P1 | 8 | P2 | 12 | P3 | 21 | P4 | 26",
+        "step_2": "Completion Time:\nP1=8\nP2=12\nP3=21\nP4=26",
+        "step_3": "Turnaround Time:\nP1=8-0=8\nP2=12-1=11\nP3=21-2=19\nP4=26-3=23",
+        "step_4": "Waiting Time:\nP1=8-8=0\nP2=11-4=7\nP3=19-9=10\nP4=23-5=18",
+        "step_5": "Average TAT=(8+11+19+23)/4=15.25\nAverage WT=(0+7+10+18)/4=8.75"
+      },
+      "exam_insight": "Always draw Gantt Chart first in FCFS numericals."
+    },
+    {
+      "id": "num_2",
+      "topic": "CPU Scheduling: Round Robin (RR)",
+      "category": "CPU Scheduling",
+      "difficulty": "Medium",
+      "concept_explanation": {
+        "title": "Round Robin Scheduling",
+        "detailed_explanation": "Round Robin is a Preemptive Scheduling Algorithm designed for Time Sharing Systems. Each process gets CPU for a fixed Time Quantum (TQ).\n\nIf process does not finish within TQ, it goes back to Ready Queue.\n\nAdvantages:\n- Fair scheduling\n- Good response time\n- Suitable for multitasking\n\nDisadvantages:\n- Context switching overhead\n- Wrong TQ reduces performance\n\nReal-Life Example:\nFriends taking turns playing a game for fixed time."
+      },
+      "problem_statement": "P1: AT=0 BT=5\nP2: AT=1 BT=3\nP3: AT=2 BT=1\nP4: AT=3 BT=2\nP5: AT=4 BT=3\nTime Quantum = 2\nFind Average WT and Average TAT.",
+      "solution_steps": {
+        "step_1": "0-2: P1 executes. Remaining=3",
+        "step_2": "2-4: P2 executes. Remaining=1",
+        "step_3": "4-5: P3 executes and finishes",
+        "step_4": "5-7: P1 executes. Remaining=1",
+        "step_5": "7-9: P4 executes and finishes",
+        "step_6": "9-11: P5 executes. Remaining=1",
+        "step_7": "11-12: P2 finishes",
+        "step_8": "12-13: P1 finishes",
+        "step_9": "13-14: P5 finishes",
+        "step_10": "Average TAT = 8.6\nAverage WT = 5.8"
+      },
+      "exam_insight": "Track remaining burst time carefully after every quantum."
+    },
+    {
+      "id": "num_3",
+      "topic": "CPU Scheduling: Shortest Job First (SJF) Non-Preemptive",
+      "category": "CPU Scheduling",
+      "difficulty": "Medium",
+      "concept_explanation": {
+        "title": "SJF Non-Preemptive",
+        "detailed_explanation": "SJF executes the process with shortest Burst Time first from available processes.\n\nSince it is Non-Preemptive, once process starts it cannot be interrupted.\n\nAdvantages:\n- Minimum average waiting time\n\nDisadvantages:\n- Starvation of long jobs\n- Difficult to predict burst time\n\nReal-Life Example:\nA teacher checks smallest assignments first."
+      },
+      "problem_statement": "P1: AT=1 BT=3\nP2: AT=2 BT=4\nP3: AT=1 BT=2\nP4: AT=4 BT=4\nFind CT, TAT and WT.",
+      "solution_steps": {
+        "step_1": "Time 1: P1 and P3 arrive. P3 has smaller BT.",
+        "step_2": "P3 runs from 1-3",
+        "step_3": "P1 runs from 3-6",
+        "step_4": "P2 runs from 6-10",
+        "step_5": "P4 runs from 10-14",
+        "step_6": "CT:\nP3=3\nP1=6\nP2=10\nP4=14",
+        "step_7": "TAT:\nP1=5\nP2=8\nP3=2\nP4=10",
+        "step_8": "WT:\nP1=2\nP2=4\nP3=0\nP4=6"
+      },
+      "exam_insight": "Always select shortest burst time among available processes only."
+    },
+    {
+      "id": "num_4",
+      "topic": "Deadlock Avoidance: Banker's Algorithm",
+      "category": "Deadlock",
+      "difficulty": "Hard",
+      "concept_explanation": {
+        "title": "Banker's Algorithm",
+        "detailed_explanation": "Banker's Algorithm is a Deadlock Avoidance Algorithm.\n\nThe OS behaves like a banker giving loans. It only allocates resources if the system remains in Safe State.\n\nImportant Terms:\n1. Allocation Matrix\n2. Max Matrix\n3. Need Matrix = Max - Allocation\n4. Available Resources\n5. Safe Sequence\n\nSafe State means all processes can finish successfully."
+      },
+      "problem_statement": "5 Processes and 3 Resources.\nFind Need Matrix and Safe Sequence.",
+      "solution_steps": {
+        "step_1": "Need = Max - Allocation",
+        "step_2": "P0 Need=(7,4,3)",
+        "step_3": "P1 Need=(1,2,2)",
+        "step_4": "P2 Need=(6,0,0)",
+        "step_5": "P3 Need=(0,1,1)",
+        "step_6": "P4 Need=(4,3,1)",
+        "step_7": "Safe Sequence:\n<P1, P3, P4, P0, P2>"
+      },
+      "exam_insight": "Always check Need <= Available before execution."
+    },
+    {
+      "id": "num_5",
+      "topic": "Memory Management: Belady's Anomaly in FIFO",
+      "category": "Memory Management",
+      "difficulty": "Medium",
+      "concept_explanation": {
+        "title": "Belady's Anomaly",
+        "detailed_explanation": "Belady's Anomaly is a strange condition in FIFO Page Replacement where increasing memory frames increases page faults.\n\nFIFO removes oldest page first.\n\nNormally more frames should reduce faults, but FIFO sometimes behaves opposite."
+      },
+      "problem_statement": "Reference String:\n3,2,1,0,3,2,4,3,2,1,0,4\nFind page faults for 3 frames and 4 frames.",
+      "solution_steps": {
+        "step_1": "3 Frames faults = 9",
+        "step_2": "4 Frames faults = 10",
+        "step_3": "Page faults increased from 9 to 10"
+      },
+      "exam_insight": "Belady's Anomaly occurs only in some algorithms like FIFO."
+    },
+    {
+      "id": "num_6",
+      "topic": "Memory Management: LRU Page Replacement",
+      "category": "Memory Management",
+      "difficulty": "Medium",
+      "concept_explanation": {
+        "title": "LRU Page Replacement",
+        "detailed_explanation": "LRU replaces the page that has not been used for the longest time.\n\nIt uses the Principle of Locality which says recently used pages are likely to be used again."
+      },
+      "problem_statement": "Reference String:\n1,2,3,4,1,2,5,1,2,3,4,5\nFrames = 3\nFind page faults.",
+      "solution_steps": {
+        "step_1": "1(F),2(F),3(F)",
+        "step_2": "4 replaces 1",
+        "step_3": "1 replaces 2",
+        "step_4": "2 replaces 3",
+        "step_5": "5 replaces 4",
+        "step_6": "3 replaces 5",
+        "step_7": "4 replaces 1",
+        "step_8": "5 replaces 2",
+        "step_9": "Total Page Faults = 10"
+      },
+      "exam_insight": "LRU performs better than FIFO in most situations."
+    },
+    {
+      "id": "num_7",
+      "topic": "Performance: Effective Access Time (EAT) with TLB",
+      "category": "Performance",
+      "difficulty": "Easy",
+      "concept_explanation": {
+        "title": "EAT with TLB",
+        "detailed_explanation": "TLB is a fast cache storing page table entries.\n\nWithout TLB:\n2 memory accesses needed.\n\nWith TLB:\nAddress translation becomes faster.\n\nFormula:\nEAT=(Hit Ratio × Hit Time)+(Miss Ratio × Miss Time)"
+      },
+      "problem_statement": "TLB Access Time=20ns\nMemory Access Time=100ns\nHit Ratio=80%\nFind EAT.",
+      "solution_steps": {
+        "step_1": "Hit Ratio=0.80\nMiss Ratio=0.20",
+        "step_2": "Hit Time=20+100=120ns",
+        "step_3": "Miss Time=20+200=220ns",
+        "step_4": "EAT=(0.80×120)+(0.20×220)",
+        "step_5": "EAT=96+44=140ns"
+      },
+      "exam_insight": "Higher TLB hit ratio improves performance."
+    },
+    {
+      "id": "num_8",
+      "topic": "Performance: Effective Access Time (EAT) with Demand Paging",
+      "category": "Performance",
+      "difficulty": "Medium",
+      "concept_explanation": {
+        "title": "EAT with Demand Paging",
+        "detailed_explanation": "Demand Paging loads pages into RAM only when needed.\n\nIf page is absent, Page Fault occurs.\nDisk access during page fault is extremely slow.\n\nFormula:\nEAT=(1-p)×Memory Access Time + p×Page Fault Service Time"
+      },
+      "problem_statement": "Memory Access Time=200ns\nPage Fault Service Time=8ms\nPage Fault Rate=0.001\nFind EAT.",
+      "solution_steps": {
+        "step_1": "Convert 8ms to ns\n8ms=8,000,000ns",
+        "step_2": "Normal Probability=0.999",
+        "step_3": "EAT=(0.999×200)+(0.001×8,000,000)",
+        "step_4": "EAT=199.8+8000",
+        "step_5": "EAT=8199.8ns"
+      },
+      "exam_insight": "Tiny page fault rates can drastically reduce performance."
+    },
+    {
+      "id": "num_9",
+      "topic": "Memory Allocation: First Fit, Best Fit, Worst Fit",
+      "category": "Memory Management",
+      "difficulty": "Easy",
+      "concept_explanation": {
+        "title": "Memory Allocation Techniques",
+        "detailed_explanation": "The OS allocates memory blocks using different strategies.\n\nFirst Fit:\nChooses first suitable block.\n\nBest Fit:\nChooses smallest suitable block.\n\nWorst Fit:\nChooses largest available block."
+      },
+      "problem_statement": "Memory Blocks: 15KB,30KB,25KB,50KB\nProcess Size=20KB\nFind allocation using First Fit, Best Fit and Worst Fit.",
+      "solution_steps": {
+        "step_1": "First Fit → 30KB",
+        "step_2": "Best Fit → 25KB",
+        "step_3": "Worst Fit → 50KB"
+      },
+      "exam_insight": "Best Fit minimizes waste but increases searching overhead."
+    },
+    {
+      "id": "num_10",
+      "topic": "Logical to Physical Address Translation",
+      "category": "Paging",
+      "difficulty": "Easy",
+      "concept_explanation": {
+        "title": "Address Translation in Paging",
+        "detailed_explanation": "CPU generates Logical Address.\nThe OS converts it into Physical Address.\n\nLogical Address = Page Number + Offset\n\nFormula:\nPhysical Address=(Frame Number × Page Size)+Offset"
+      },
+      "problem_statement": "Logical Address=10240\nPage Size=512 bytes\nPage 20 is in Frame 15\nFind Physical Address.",
+      "solution_steps": {
+        "step_1": "Page Number=10240/512=20",
+        "step_2": "Offset=10240%512=0",
+        "step_3": "Frame Number=15",
+        "step_4": "Physical Address=(15×512)+0",
+        "step_5": "Physical Address=7680"
+      },
+      "exam_insight": "Always separate Page Number and Offset first."
+    },
+    {
+      "id": "num_11",
+      "topic": "Proportional Frame Allocation",
+      "category": "Memory Management",
+      "difficulty": "Medium",
+      "concept_explanation": {
+        "title": "Proportional Allocation",
+        "detailed_explanation": "In Paging systems, frames are allocated according to process size.\n\nLarger processes get more frames.\n\nFormula:\nFrames=(Process Size/Total Size)×Total Frames"
+      },
+      "problem_statement": "Process Sizes:\n40KB,10KB,20KB,50KB\nTotal Frames=60\nFind frame allocation.",
+      "solution_steps": {
+        "step_1": "Total Size=120KB",
+        "step_2": "P1=(40/120)×60=20",
+        "step_3": "P2=(10/120)×60=5",
+        "step_4": "P3=(20/120)×60=10",
+        "step_5": "P4=(50/120)×60=25"
+      },
+      "exam_insight": "Always verify total allocated frames equal total available frames."
+    }
+  ]
+}

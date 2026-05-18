@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-1: #07090f;
+  --card: rgba(255,255,255,0.04);
+  --muted: #9aa4b2;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,body,#root {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: radial-gradient(800px 400px at 10% 10%, rgba(99,102,241,0.06), transparent 10%), radial-gradient(600px 300px at 90% 80%, rgba(14,165,233,0.04), transparent 10%), var(--bg-1);
+  color: #e6eef8;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
+
+.glass {
+  background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(8px) saturate(120%);
+}
+
+.card-glow {
+  box-shadow: 0 6px 30px rgba(79,70,229,0.12);
+}
+
+.gradient-border {
+  background: linear-gradient(90deg,#6366f1,#7c3aed,#06b6d4);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  padding: 1px;
+}
+
+/* Minimal custom scrollbar */
+*::-webkit-scrollbar{height:8px;width:8px}
+*::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#4f46e5,#06b6d4);border-radius:9999px}
+
+.mono-box {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Segoe UI Mono', monospace;
+}
+
+.floating-orb { filter: blur(40px); opacity: 0.8 }
+
