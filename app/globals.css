@@ -6,8 +6,12 @@
   --muted: #9aa4b2;
 }
 
-html,body,#root {
+html,body {
   height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -15,6 +19,7 @@ body {
   color: #e6eef8;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+  overflow-x: hidden;
 }
 
 .glass {
